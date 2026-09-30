@@ -1,0 +1,196 @@
+<html>
+    <head>
+        <title> Registration Form</title>
+        <style>
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+   background:linear-gradient(135deg, #ff69b4, #8a2be2);
+   color: white;
+    width: 100%;
+    text-align: center;
+    font-style:Times Roman;
+    padding: 10px 0;
+    margin: 0 0 50px 0;
+    font-size:320%;
+
+    font-family: "Trebuchet MS";
+    color: #222;
+}
+.form-content{   background: #222;
+    color: white;
+
+    width: 650px;
+    padding: 35px 45px;
+
+    border-radius: 15px;
+
+    /* Shadow */
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.35),
+        0 20px 50px rgba(0, 0, 0, 0.2);
+
+   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    
+
+    font-family: Arial, sans-serif;
+
+}
+.form-content div {
+    display: flex;
+    align-items: center;
+}
+
+.form-content label {
+    width: 150px;       /* SAME width for every label */
+    text-align: right;  /* labels line up nicely */
+    margin-right: 15px;
+}
+
+.fname {
+border-radius: 30%;
+}
+button {
+    align-self: center;
+
+    /* Size */
+    width: 130px;
+    padding: 10px 0;
+
+    /* Color */
+    background: linear-gradient(135deg, #ff69b4, #8a2be2);
+    color: white;
+
+    /* Curvy shape */
+    border: none;
+    border-radius: 25px;
+
+    /* Font */
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.successMessage {
+    f
+}
+
+        </style>
+    </head>
+    <body>
+        <div>
+        <h1> Registration Form</h1>
+       </div>
+        <form onsubmit="return validateForm()" class = "form-content">
+            <div>
+             <label>First Name: </label>
+             <input type = "text" id ="fname">
+             <span id = "fnameError" style="color:Red"></span>
+            </div>
+               <div>
+               <label> Last Name:</label>
+               <input type = "text" id = "lname"><span id = "lnameError" style="color:Red"></span>
+            </div>
+            <div>
+        <label>Email: </label>
+         <input type="text" id="email" required>
+        <span id="emailError" class="error" style="color:Red"></span>
+    </div>
+
+    <div>
+        <label>User ID:</label>
+        <input type="text" id="uid" required>
+        <span id="uidError" class="error" style="color:Red"></span>
+    </div>
+
+    <div>
+        <label>Password: </label>
+         <input type="password" id="pass" required>
+        <span id="passError" class="error" style="color:Red"></span>
+    </div>
+
+    <div>
+        <label>Confirm Password: </label>
+        <input type="password" id="cpass" required>
+        <span id="cpassError" class="error" style="color:Red"></span>
+    </div>
+
+    <button type="submit">Register</button>
+    <div id = "successMessage"></div>
+</form>
+
+<script>
+function validateForm() {
+    let fname = document.getElementById("fname").value;
+        let lname = document.getElementById("lname").value;
+        let email = document.getElementById("email").value;
+        let uid = document.getElementById("uid").value;
+        let pass = document.getElementById("pass").value;
+        let cpass = document.getElementById("cpass").value;  
+
+let isValid=true;
+if (fname === "") {
+    document.getElementById("fnameError").innerText = "Field is Required!" ;
+    isValid = false;
+}
+
+if (lname === "") {
+    document.getElementById("lnameError").innerText = "Field is Required!" ;
+    isValid = false ;
+}
+
+if (email === "") {
+    document.getElementById("emailError").innerText = "Field is Required!" ;
+    isValid = false ;
+}
+else {
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+        document.getElementById("emailError").innerText =
+            "Enter a valid email address!";
+        isValid = false;
+    }
+}
+
+if (uid === "") {
+    document.getElementById("uidError").innerText = "Field is Required!" ;
+    isValid = false ;
+}
+
+if (pass === "") {
+    document.getElementById("passError").innerText = "Field is Required!" ;
+    isValid = false ;
+}
+
+if (cpass === "") {
+    document.getElementById("cpassError").innerText = "Field is Required!" ;
+    isValid = false ;
+}
+else if (cpass!=pass) {
+    document.getElementById("cpassError").innerText = "Password don't match! Try again." ;
+    isValid = false;
+}
+if (isValid) {
+
+    document.getElementById("successMessage").innerText =
+        "Registration Successful!";
+
+}
+    return false;
+}
+
+    </script>
+
+    </body>
+</html>
